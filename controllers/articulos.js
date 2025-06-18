@@ -1,4 +1,5 @@
 import Articulos from "../models/articulos.js";
+import { generarDescripcion, generarPrecio } from "../service/aiService.js";
 
 const httpArticulos = {
     obtenerArticulos: async (req, res) => {
@@ -22,11 +23,15 @@ const httpArticulos = {
     crearArticulos: async (req, res) => {
         try {
             
-            const { codigo, nombre } = req.body;
+            const { codigo, nombre, cantidad} = req.body;
             console.log(codigo,nombre);
-            const articulo = new Articulos({ codigo, nombre });
+
+            const descripcion = await generarDescripcion(nombre)
+            const precio = await generarPrecio(nombre)
+            const articulo = new Articulos({ codigo, nombre, cantidad, precio, descripcion });
             await articulo.save();
-            res.json({ msg: "Creado con exito" });
+            res.json({ msg: "Articulo creado con exito", articulo });
+            
         } catch (error) {
             res.status(400).json({ msg: "Error al guardar el articulo" });
         }

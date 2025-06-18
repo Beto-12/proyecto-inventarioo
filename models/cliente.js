@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const clienteEsquema = new mongoose.Schema({
-    codigoArticulo: {type:mongoose.Schema.Types.ObjectId,ref: 'Articulos', require: true},
-    cedula: {type: String, uniqued: true},
+    cedula: {type: String, unique: true},
     nombre: {type: String},
     apellido: {type: String},
-    direccion: {type: String, require: true},
-    email: {type: String, require: true},
-    telefono: {type: Number, require: true}
+    direccion: {type: String, required: true},
+    email: {type: String, required: true},
+    telefono: {type: Number, required: true},
+    compras: [{type: mongoose.Schema.Types.ObjectId, ref: "Ventas"}]  // Historial de compras
 })
 
 export default mongoose.model("Clientes", clienteEsquema);
