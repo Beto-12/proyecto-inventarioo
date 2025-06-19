@@ -5,7 +5,7 @@ const usuarioEsquema = new mongoose.Schema({
     nombre:{type:String},
     apellido:{type:String},
     direccion:{type:String, required:true},
-    telefono:{type:Number, required:true},
+    telefono:{type:String, required:true},
     estado:{type:Boolean,
         default:true,
         required:true

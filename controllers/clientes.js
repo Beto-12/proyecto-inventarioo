@@ -20,8 +20,8 @@ const httpClientes = {
     },
     crearClientes: async (req, res) => {
         try {
-            const { cedula, nombre } = req.body;
-            const clientes = new Clientes({ cedula, nombre });
+            const { cedula, nombre, apellido, direccion, email, telefono } = req.body;
+            const clientes = new Clientes({ cedula, nombre, apellido, direccion, email, telefono });
             await clientes.save();
             res.json({ msg: "Cliente creado con exito" });
         } catch (error) {

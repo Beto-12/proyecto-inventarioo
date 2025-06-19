@@ -1,5 +1,5 @@
 import Articulos from "../models/articulos.js";
-import { generarDescripcion, generarPrecio } from "../service/aiService.js";
+//import { generarDescripcion, generarPrecio } from "../service/aiService.js";
 
 const httpArticulos = {
     obtenerArticulos: async (req, res) => {
@@ -26,9 +26,9 @@ const httpArticulos = {
             const { codigo, nombre, cantidad} = req.body;
             console.log(codigo,nombre);
 
-            const descripcion = await generarDescripcion(nombre)
-            const precio = await generarPrecio(nombre)
-            const articulo = new Articulos({ codigo, nombre, cantidad, precio, descripcion });
+            /* const descripcion = await generarDescripcion(nombre)
+            const precio = await generarPrecio(nombre) */
+            const articulo = new Articulos({ codigo, nombre, cantidad, /* precio, descripcion */ });
             await articulo.save();
             res.json({ msg: "Articulo creado con exito", articulo });
             
